@@ -13,6 +13,14 @@ DeepStream에서 각 영상인식 모델의 추론과 관련된 상세 내용은
 
 - 한글 출력을 위해서는 `fonts-nanum`을 호스트에 설치하고, `docker-compose.yaml`을 통해 경로를 마운트해야 함
 
+#### 도커 컨테이너 실행
+
+> 이후의 모든 과정은 도커 컨테이너 실행 후에 진행
+
+  ```bash
+  docker compose up -d
+  ```
+
 #### 신규 모델 사용 방법
 
 - YOLOv8 모델 변환
