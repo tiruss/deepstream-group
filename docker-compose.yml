@@ -1,7 +1,7 @@
 services:
   engine:
     container_name: witai-share
-    image: 129.254.62.253:5050/projects/customslab:latest
+    image: projects/customslab:latest
     build:
       context: build
       dockerfile: Dockerfile.6.3
@@ -23,5 +23,4 @@ services:
       - CUDA_MODULE_LOADING=LAZY
       - CUDA_VER=11.8
       - NVSTREAMMUX_ADAPTIVE_BATCHING=yes
-      - HOST_IP=${HOST_IP}
     shm_size: 16G
