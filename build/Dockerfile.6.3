@@ -1,0 +1,27 @@
+FROM nvcr.io/nvidia/deepstream:6.3-triton-multiarch
+LABEL maintainer="Seonho Oh <seonho@etri.re.kr>"
+
+RUN ./user_deepstream_python_apps_install.sh --version 1.1.8
+RUN apt install -y libgstrtspserver-1.0-0 gstreamer1.0-rtsp \
+    gobject-introspection gir1.2-gst-rtsp-server-1.0
+
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+RUN apt install git-lfs
+
+# Support Gstreamer python plugin
+RUN apt-get install -y gstreamer1.0-python3-plugin-loader
+
+COPY pyds-1.1.8-py3-none-linux_x86_64.whl ./
+RUN pip3 uninstall -y pyds && pip3 install pyds-1.1.8-py3-none-linux_x86_64.whl
+
+# make sure CUDA 12.1
+RUN pip3 install torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu121
+
+RUN pip3 install --no-cache-dir -U pip
+RUN pip3 install --no-cache-dir opencv-python-headless dateutils pycuda \
+    matplotlib scipy scikit-image scikit-learn \
+    requests aiohttp aiofiles \
+    uvicorn fastapi python-multipart \
+    av
+
+RUN pip3 install --no-cache-dir kafka-python msgpack pymongo

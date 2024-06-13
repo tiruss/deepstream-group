@@ -1,0 +1,27 @@
+services:
+  engine:
+    container_name: witai-share
+    image: 129.254.62.253:5050/projects/customslab:latest
+    build:
+      context: build
+      dockerfile: Dockerfile.6.3
+    runtime: nvidia
+    restart: unless-stopped
+    tty: true
+    working_dir: /workspace
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - /tmp/.X11-unix/:/tmp/.X11-unix
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/share/fonts/truetype/nanum:/usr/share/fonts/truetype/nanum
+      - ${PWD}:/workspace
+    environment:
+      - TZ=Asia/Seoul
+      - PYTHONIOENCODING=UTF-8
+      - DISPLAY=${DISPLAY}
+      - CUDA_MODULE_LOADING=LAZY
+      - CUDA_VER=11.8
+      - NVSTREAMMUX_ADAPTIVE_BATCHING=yes
+      - HOST_IP=${HOST_IP}
+    shm_size: 16G
