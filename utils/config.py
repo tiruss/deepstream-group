@@ -41,9 +41,9 @@ MAX_QUEUE_SIZE = 0
 TRACKER_TIMEOUT = 10  # unused
 
 # Database, meta, thumbnail configuration
-ENABLE_DB = get_bool("ENABLE_DB", True)
+ENABLE_DB = get_bool("ENABLE_DB", False)
 
-HOST_IP = get_str("HOST_IP", "129.254.174.219")
+HOST_IP = get_str("HOST_IP", "175.126.184.64")
 
 DB_IP = HOST_IP
 DB_PORT = 27017
@@ -58,7 +58,7 @@ META_INTERVAL = 15
 META_BATCH_TIMEOUT = 0.1
 META_MAX_BATCH_SIZE = 256
 
-ENABLE_KAFKA = get_bool("ENABLE_KAFKA", True)
+ENABLE_KAFKA = get_bool("ENABLE_KAFKA", False)
 
 KAFKA_SERVER = HOST_IP + ":9092"
 KAFKA_TOPIC_REID = "customslab-reid"

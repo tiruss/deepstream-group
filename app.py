@@ -407,8 +407,6 @@ def main(args: Any) -> None:
         logger.info("At least one of the sources is live")
         streammux.set_property("live-source", 1)
 
-    pgie_person = create_gie("primary", "person", "configs/config_infer_primary_person.txt")
-
     tracker = make_elm_or_print_err("nvtracker", "tracker")
 
     # Set properties of tracker
@@ -526,6 +524,12 @@ def main(args: Any) -> None:
                 nvvidconv1.set_property("nvbuf-memory-type", mem_type)
 
     logger.info("Adding elements to Pipeline")
+
+    pgie = Gst.ElementFactory.make("nvinfer", "primary-inference")
+    print("daadasd")
+    print(pgie)
+
+    pgie_person = create_gie("primary", "group", "./configs/config_group.txt")
 
     elems = [pgie_person, tracker, nvvidconv0, caps0]
 

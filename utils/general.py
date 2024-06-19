@@ -230,6 +230,7 @@ def create_source_bin(index: int, uri: str, rate: int | None = 44100, loop: bool
 
 def create_gie(process_mode: str, name: str, config_file_path: str) -> Gst.Element:
     gie = make_elm_or_print_err("nvinfer", f"{process_mode}-inference-{name}", f"{process_mode}-gie-{name}")
+    print(gie)
     gie.set_property("config-file-path", config_file_path)
     return gie
 
